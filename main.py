@@ -1,7 +1,7 @@
 from google.cloud import bigquery
 from flask import Flask
 from flask import request
-import os 
+import os
 
 app = Flask(__name__)
 client = bigquery.Client()
@@ -19,7 +19,7 @@ def main(big_query_client=client):
         uri, table_id, job_config=job_config
     )
 
-    load_job.result()  
+    load_job.result()
 
     destination_table = big_query_client.get_table(table_id)
     return {"data": destination_table.num_rows}
